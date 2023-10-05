@@ -12,8 +12,59 @@
     <title></title>
 </head>
 <body>
+    <h2>
+        @if (Model != null)
+        {
+            @Model.Name <br />
+            @Model.Id
+
+        }
+    </h2>
     <div>
         <h2>Sign up</h2>
     </div>
+    <form action="" method="post">
+        <input type="text" class="form-control" name="Name" placeholder="Name" />
+        <input type="number" class="form-control" name="Id" placeholder="Id" />
+
+        <br />
+        Gender <input type="radio" name="Gender" id="male" />
+        <label for="id">Male</label>
+        <input type="radio" name="Gender" id="female" />
+        <label for="female">Female</label>
+        <br />
+        Profession :
+
+        <select>
+            <option>Select</option>
+            <option>Student</option>
+            <option>Teacher</option>
+        </select>
+        <br />
+        <p>Hobbies : </p>
+        <label>
+            <input type="checkbox" name="interest" value="sports"> Sports
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="interest" value="music"> Music
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="interest" value="movies"> Movies
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="interest" value="books"> Books
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="interest" value="travel"> Travel
+        </label>
+        <br>
+        <input type="submit" value="Login" class="btn btn-danger" />
+
+    </form>
 </body>
 </html>
+
