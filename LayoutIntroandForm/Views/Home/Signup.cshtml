@@ -16,7 +16,12 @@
         @if (Model != null)
         {
             @Model.Name <br />
-            @Model.Id
+            @Model.Id <br />
+            @Model.Gender <br />
+
+            @Html.Raw(string.Join(", ", Model.Interest))
+            <br />
+            @Model.Profession
 
         }
     </h2>
@@ -28,38 +33,40 @@
         <input type="number" class="form-control" name="Id" placeholder="Id" />
 
         <br />
-        Gender <input type="radio" name="Gender" id="male" />
+        Gender
         <label for="id">Male</label>
-        <input type="radio" name="Gender" id="female" />
+        <input type="radio" name="Gender" value="male" /> @*to pass value of radio button we need to set 'value' instead of 'name'*@
         <label for="female">Female</label>
+        <input type="radio" name="Gender" value="female" />
+
         <br />
         Profession :
 
-        <select>
-            <option>Select</option>
-            <option>Student</option>
-            <option>Teacher</option>
+        <select name="Profession">
+            <option> Select</option>
+            <option value="student" >Student</option>
+            <option value="teacher">Teacher</option>
         </select>
         <br />
         <p>Hobbies : </p>
         <label>
-            <input type="checkbox" name="interest" value="sports"> Sports
+            <input type="checkbox" name="Interest" value="sports"> Sports 
         </label>
         <br>
         <label>
-            <input type="checkbox" name="interest" value="music"> Music
+            <input type="checkbox" name="Interest" value="music"> Music 
         </label>
         <br>
         <label>
-            <input type="checkbox" name="interest" value="movies"> Movies
+            <input type="checkbox" name="Interest" value="movies"> Movies 
         </label>
         <br>
         <label>
-            <input type="checkbox" name="interest" value="books"> Books
+            <input type="checkbox" name="Interest" value="books"> Books 
         </label>
         <br>
         <label>
-            <input type="checkbox" name="interest" value="travel"> Travel
+            <input type="checkbox" name="Interest" value="travel"> Travel
         </label>
         <br>
         <input type="submit" value="Login" class="btn btn-danger" />

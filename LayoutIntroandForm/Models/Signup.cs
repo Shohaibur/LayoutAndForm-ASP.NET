@@ -10,6 +10,8 @@ namespace LayoutIntroandForm.Models
     {
         public string Name { get; set; }
         public int Id { get; set; }
-
+        public string Gender { get; set; }
+        public List<string> Interest {  get; set; }
+        public string Profession { get; set; }
     }
 }

@@ -12,47 +12,45 @@ namespace LayoutIntroandForm.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            
             return View();
         }
-        public ActionResult About() {
+
+        public ActionResult About()
+        {
             return View();
         }
+
         [HttpGet]
         public ActionResult Signup()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Signup(Signup s)
         {
             return View(s);
         }
+
         [HttpGet]
-        public ActionResult Login() {
-            
+        public ActionResult Login()
+        {
             return View();
         }
-        [HttpPost]
-        //public ActionResult Login(FormCollection fc) {
-        //public ActionResult Login(string Password,string Username) {
-        public ActionResult Login(Login l) {
-            //ViewBag.Uname = Request["Username"];
-            //ViewBag.Pass = Request["Password"];
-            //ViewBag.Uname = fc["Username"];
-            //ViewBag.Pass = fc["Password"];
-            //ViewBag.Uname = Username;
-            //ViewBag.Pass = Password;
 
+        [HttpPost]
+        public ActionResult Login(Login l)
+        {
             return View(l);
         }
-        public ActionResult LoginSubmit() {
+
+        public ActionResult LoginSubmit()
+        {
             //validation
             //authentication
             TempData["msg"] = "Login Successfull";
             //return Redirect("https://www.aiub.edu");
-            return RedirectToAction("Index","Dashboard");
-            
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }
