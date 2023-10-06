@@ -29,6 +29,11 @@ namespace LayoutIntroandForm.Controllers
         [HttpPost]
         public ActionResult Signup(Signup s)
         {
+            if (ModelState.IsValid)
+            {
+
+                return RedirectToAction("Login");
+            }
             return View(s);
         }
 

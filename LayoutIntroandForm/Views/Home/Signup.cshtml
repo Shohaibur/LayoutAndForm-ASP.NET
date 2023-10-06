@@ -4,74 +4,86 @@
     Layout = "~/Views/Shared/_OuterLayout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <h2>
-        @if (Model != null)
+@{
+    bool CheckGender(string gender)
+    {
+        if (Model != null && Model.Gender != null &&
+            Model.Gender.Equals(gender))
         {
-            @Model.Name <br />
-            @Model.Id <br />
-            @Model.Gender <br />
-
-            @Html.Raw(string.Join(", ", Model.Interest))
-            <br />
-            @Model.Profession
-
+            return true;
         }
-    </h2>
-    <div>
-        <h2>Sign up</h2>
-    </div>
-    <form action="" method="post">
-        <input type="text" class="form-control" name="Name" placeholder="Name" />
-        <input type="number" class="form-control" name="Id" placeholder="Id" />
+        return false;
+    }
+    bool CheckInterest(string interest)
+    {
+        if (Model != null && Model.Interest != null)
+        {
+            foreach (var h in Model.Interest)
+            {
+                if (h.Equals(interest)) return true;
+            }
+        }
+        return false;
+    }
+}
 
-        <br />
-        Gender
-        <label for="id">Male</label>
-        <input type="radio" name="Gender" value="male" /> @*to pass value of radio button we need to set 'value' instead of 'name'*@
-        <label for="female">Female</label>
-        <input type="radio" name="Gender" value="female" />
+    <h2>Sign up</h2>
 
-        <br />
-        Profession :
 
-        <select name="Profession">
-            <option> Select</option>
-            <option value="student" >Student</option>
-            <option value="teacher">Teacher</option>
-        </select>
-        <br />
-        <p>Hobbies : </p>
-        <label>
-            <input type="checkbox" name="Interest" value="sports"> Sports 
-        </label>
-        <br>
-        <label>
-            <input type="checkbox" name="Interest" value="music"> Music 
-        </label>
-        <br>
-        <label>
-            <input type="checkbox" name="Interest" value="movies"> Movies 
-        </label>
-        <br>
-        <label>
-            <input type="checkbox" name="Interest" value="books"> Books 
-        </label>
-        <br>
-        <label>
-            <input type="checkbox" name="Interest" value="travel"> Travel
-        </label>
-        <br>
-        <input type="submit" value="Login" class="btn btn-danger" />
+@Html.ValidationSummary()
+<form action="" method="post">
+    Name :<input type="text" value="@(Model==null ? "":Model.Name)" name="Name" /><br />
+    <span class="text-danger">@Html.ValidationMessage("Name")</span>
+   
+    @*Id :<input type="number" name="Id" /><br />
+    <span class="text-danger">@Html.ValidationMessage("Id")</span>*@
 
-    </form>
-</body>
-</html>
+    <br />
+
+    Gender:
+    <label for="male">Male</label>
+    <input type="radio" checked="@CheckGender("Male")" name="Gender" value="male" /> @*to pass value of radio button we need to set 'value' instead of 'name'*@
+    <label for="female">Female</label>
+    <input type="radio" checked="@CheckGender("Female")" name="Gender" value="female" /><br />
+    <span class="text-danger">@Html.ValidationMessage("Gender")</span>
+
+    <br />
+    Profession :
+
+    <select name="Profession">
+        <option selected disabled>--- Select ---</option>
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+    </select>
+    <br />
+    <span class="text-danger">@Html.ValidationMessage("Profession")</span>
+    <br />
+    <p>Hobbies : </p>
+    <label>
+        <input type="checkbox" checked="@CheckInterest("Sport")" name="Interest" value="sports"> Sports
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" checked="@CheckInterest("Music")" name="Interest" value="music"> Music
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" checked="@CheckInterest("MOvies")" name="Interest" value="movies"> Movies
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" checked="@CheckInterest("Books")" name="Interest" value="books"> Books
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" checked="@CheckInterest("Travel")" name="Interest" value="travel"> Travel
+    </label>
+    <br>
+    <br />
+    <span class="text-danger">@Html.ValidationMessage("Interest")</span>
+    <br />
+    <input type="submit" value="Login" class="btn btn-danger" />
+
+</form>
+
 
